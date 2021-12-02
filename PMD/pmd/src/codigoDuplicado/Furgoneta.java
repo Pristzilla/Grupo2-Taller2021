@@ -1,18 +1,20 @@
 package codigoDuplicado;
 
-public class Motocicleta implements Vehiculo{
-
+public class Furgoneta implements Vehiculo{
 	private String matricula;
 	private double potencia;
 	private int plazas;
 	private int pesoKg;
+	private int litrosMaletero;
 	
-	public Motocicleta (String matricula, double potencia, int plazas, int peso) {
+	public Furgoneta (String matricula, double potencia, int plazas, int peso, int litros) {
 		this.matricula = matricula;
 		this.potencia = potencia;
 		this.plazas = plazas;
 		this.pesoKg = peso;
+		litrosMaletero = litros;
 	}
+	
 	
 	/**
 	 * 
@@ -42,14 +44,24 @@ public class Motocicleta implements Vehiculo{
 	 * @param plazas
 	 * @param litrosMaletero
 	 * @param consumo
+	 * @return true si el coche cumple las condiciones para ir de vacaciones en el
 	 * @return false en caso contrario.
 	 */
-	public boolean recomendadoParaViajes () {
-		if (potencia > 50) {
-			return true;
+	public boolean recomendadoParaViajes (int plazas, int litrosMaletero, double consumo) {
+		boolean recomendado = true;
+		
+		if (litrosMaletero < 500 || litrosMaletero > 2000 || plazas < 4) {
+			recomendado = false;
+		} 
+		
+		if (consumo < 5 && litrosMaletero > 500) {
+			recomendado = true;
 		}
-		return false;
+		
+		return recomendado;
 	}
+	
+	
 	
 	
 	
@@ -86,6 +98,4 @@ public class Motocicleta implements Vehiculo{
 	public void setPesoKg(int pesoKg) {
 		this.pesoKg = pesoKg;
 	}
-	
-	
 }
